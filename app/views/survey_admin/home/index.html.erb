@@ -1,0 +1,28 @@
+<% content_for :head do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#surveyOverviewTable').tablesorter({widgets: ['zebra']});
+    });
+  </script>
+<% end %>
+
+<table id="surveyOverviewTable" class="tablesorter">
+  <thead>
+    <tr>
+      <th>Access Code</th>
+      <th>Title</th>
+      <th>Total Responses</th>
+      <th>Total Completed</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @surveys.each do |survey| %>
+      <tr>
+        <td><%= link_to survey.access_code, :controller => 'survey_admin/responses', :action => 'list', :survey_access_code => survey.access_code %></td>
+        <td><%= survey.title %></td>
+        <td><%= survey.response_sets.size %></td>
+        <td><%= survey.total_completed_responses %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

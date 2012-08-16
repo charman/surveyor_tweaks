@@ -1,0 +1,16 @@
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Answer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @survey_sections.each do |survey_section| %>
+      <tr><th style="text-weight: bold;"><%= survey_section.title  %></th></tr>
+      <% survey_section.questions.each do |question| %>
+        <%= raw table_rows_for_responses(@response_set, question) %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

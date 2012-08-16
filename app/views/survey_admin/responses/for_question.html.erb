@@ -1,0 +1,68 @@
+<div>
+  <b>Question:</b> <%= @question.text %>
+</div>
+
+<table class="tablesorter">
+  <% if responses_should_be_grouped?(@responses) %>
+    <thead>
+      <tr>
+        <th>Answer</th>
+        <th>Total</th>
+        <th>Percentage</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% unique_response_texts_with_totals(@responses).each do |response_text, total| %>
+        <tr>
+          <td><%= response_text %></td>
+          <td><%= total %></td>
+          <td><%= sprintf("%.1f\%", (100 * total.to_f) / total_response_sets_for_question(@question).to_f) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <thead>
+      <tr>
+        <th>Response Set ID</th>
+        <th>Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @responses.each do |response| %>
+        <tr>
+          <td><%= link_to "View #{response.response_set.id}", :controller => 'survey_admin/responses', :action => 'show', :id => response.response_set.id %></td>
+          <td><%= text_for_response(response) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>
+
+
+<% if @question.pick == 'any' %>
+  <table class="tablesorter" style="width: auto;">
+    <thead>
+      <tr>
+        <th style="padding-right: 20px;">Response Set ID</th>
+        <% @question.answers.each do |answer| %>
+          <th style="padding-right: 20px;"><%= answer.short_text %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <% answer_ids = @question.answers.collect { |a| a.id } %>
+    <tbody>
+      <% @responses.group_by(&:response_set_id).each do |response_set_id, responses| %>
+        <tr>
+          <td><%= link_to "View #{response_set_id}", :controller => 'admin/responses', :action => 'show', :id => response_set_id %></td>
+          <% answer_ids.each do |answer_id| %>
+            <% if responses.detect { |response| response.answer_id == answer_id } %>
+              <td style="background-color: blue; font-size: 0">y</td>
+            <% else %>
+              <td style="font-size: 0">n</td>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

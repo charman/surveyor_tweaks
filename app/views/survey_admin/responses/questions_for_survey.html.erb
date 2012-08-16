@@ -1,0 +1,21 @@
+<h2><%= link_to "View list of Responses", :controller => 'survey_admin/responses', :action => 'list',  :survey_access_code => @survey.access_code %></h2>
+
+<table class="tablesorter">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Total Responses</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @survey_sections.each do |survey_section| %>
+      <tr><th style="text-weight: bold;"><%= survey_section.title  %></th></tr>
+      <% survey_section.questions.each do |question| %>
+        <tr>
+          <td><%=  link_to question.text, :controller => 'survey_admin/responses', :action => 'for_question', :id => question.id %></td>
+          <td><%= total_response_sets_for_question(question) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

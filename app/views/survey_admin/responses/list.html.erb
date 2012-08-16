@@ -1,0 +1,28 @@
+<h2><%= link_to "View Questions", :controller => 'survey_admin/responses', :action => 'questions_for_survey', :id => @survey.id %></h2>
+
+<% cache("admin_responses_list_for_survey_#{@survey_access_code}") do %>
+  <table class="tablesorter">
+    <thead>
+      <tr>
+        <th>Response Set ID</th>
+        <th>Complete?</th>
+        <th>Total Survey Sections with Responses</th>
+        <th>Total Questions Answered</th>
+        <th>Last Response Created At (EST)</th>
+        <th>Time between first/last responses</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @survey.response_sets.each do |response_set| %>
+        <tr>
+          <td><%= link_to "View #{response_set.id}", :controller => 'survey_admin/responses', :action => 'show', :id => response_set.id %></td>
+          <td><%= response_set.complete?.to_s %></td>
+          <td><%= response_set.total_survey_sections_with_responses %>
+          <td><%= response_set.total_questions_answered %></td>
+          <td><%= (response_set.most_recent_response_created_at.in_time_zone('America/New_York').strftime("%Y-%m-%d %H:%M:%S") if response_set.most_recent_response_created_at) %></td>
+          <td><%= response_set.seconds_between_first_and_last_responses %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
