@@ -1,6 +1,8 @@
 # surveyor_tweaks
 
-SurveyorTweaks provides additional functionality to users of the the Surveyor Gem (https://github.com/NUBIC/surveyor).  The Gem:
+SurveyorTweaks provides additional functionality to users of the the Surveyor Gem (https://github.com/NUBIC/surveyor).
+
+SurveyorTweaks:
 * Provides an admin interface for viewing survey responses, accessible at '/survey_admin'
 * Adds convenience methods for analyzing responses to the ResponseSet and Survey models
 
