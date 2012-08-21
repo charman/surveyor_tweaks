@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.description = 'Adds some functionality to the Surveyor Gem - https://github.com/NUBIC/surveyor'
 
   #  If you have other dependencies, add them here
-  s.add_dependency('surveyor', '~> 0.22.0')
+  s.add_dependency('surveyor', '~> 0.23.0.pre')
 
   #  If you need to check in files that aren't .rb files, add them here
   s.files        = Dir["{lib}/**/*.rb", "bin/*", "LICENSE", "*.md"]
