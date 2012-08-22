@@ -53,7 +53,7 @@
     <tbody>
       <% @responses.group_by(&:response_set_id).each do |response_set_id, responses| %>
         <tr>
-          <td><%= link_to "View #{response_set_id}", :controller => 'admin/responses', :action => 'show', :id => response_set_id %></td>
+          <td><%= link_to "View #{response_set_id}", :controller => 'survey_admin/responses', :action => 'show', :id => response_set_id %></td>
           <% answer_ids.each do |answer_id| %>
             <% if responses.detect { |response| response.answer_id == answer_id } %>
               <td style="background-color: blue; font-size: 0">y</td>

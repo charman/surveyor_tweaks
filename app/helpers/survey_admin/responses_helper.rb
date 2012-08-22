@@ -5,7 +5,7 @@ module SurveyAdmin::ResponsesHelper
     responses = response_set.responses_for_question(question)
 
     if responses.size > 0
-      html_output = "<tr><td>#{link_to question.text, :controller => 'admin/responses', :action => 'for_question', :id => question.id}</td>" +
+      html_output = "<tr><td>#{link_to question.text, :controller => 'survey_admin/responses', :action => 'for_question', :id => question.id}</td>" +
         "<td id=\"response_id_#{responses.first.id}\">#{text_for_response(responses.first)}</td></tr>"
 
       responses.drop(1).each do |response|
