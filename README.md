@@ -11,7 +11,7 @@ SurveyorTweaks:
 
 Add surveyor_tweaks to your Gemfile:
 
-    gem 'surveyor_tweaks', '0.0.1', :git => "git://github.com/charman/surveyor_tweaks_.git"
+    gem 'surveyor_tweaks', '0.0.2', :git => "git://github.com/charman/surveyor_tweaks_.git"
 
 Then run:
 
