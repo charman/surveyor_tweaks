@@ -3,12 +3,10 @@ module SurveyorTweaks
     module ResponsesControllerMethods
 
       def self.included(base)
+        base.send :cache_sweeper, :response_sweeper, :response_set_sweeper
         base.send :layout, 'survey_admin'
         base.send :helper_method, :responses_should_be_grouped?, :unique_response_texts_with_totals, :text_for_response
       end
-
-      # cache_sweeper :response_sweeper, :response_set_sweeper
-      # 
 
 
       def for_question
