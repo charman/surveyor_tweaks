@@ -8,7 +8,6 @@ module SurveyorTweaks
 
 
       def completed_response_sets
-#        ResponseSet.where(["survey_id = ?", 2]).where("completed_at IS NOT NULL")
         ResponseSet.where(["survey_id = ?", self.id]).where("completed_at IS NOT NULL")
       end
 
